@@ -8,7 +8,9 @@ for (const day of days) {
     day.textContent = dayOfMounth;
     today += 86400000;
 
-    day.addEventListener('click', updateSessions(dayOfMounth));
+    day.addEventListener('click', () => {
+        updateSessions(dayOfMounth);
+    });
 }
 //updateSessions('10.10');
 
@@ -19,7 +21,9 @@ function updateSessions(day) {
         let movie = movies[i];
         let movieName = document.createTextNode(movie.name);
         el.appendChild(movieName);
-        el.addEventListener('click',updateCurrentSession(movie));
+        el.addEventListener('click', () => {
+            updateCurrentSession(movie);
+        });
     });
 }
 
