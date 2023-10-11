@@ -14,6 +14,8 @@ chooseDay('10.10');
 
 function chooseDay(day) {
     updateDaysView(day);
+    updateSessionsView("");
+    setSessionVisibility(false);
     let movies = data[day];
     let sessions = document.getElementsByClassName('session');
     Array.from(sessions).forEach((el, i) => {
@@ -21,7 +23,7 @@ function chooseDay(day) {
         let movieName = el.getElementsByTagName('p')[0];
         movieName.textContent = movie.name;
         el.addEventListener('click', () => {
-            updateCurrentSession(movie);
+            chooseSession(movie);
         });
     });
 }
@@ -32,9 +34,24 @@ function updateDaysView(chosenDay) {
     }
 }
 
-function updateCurrentSession(movie) {
+function chooseSession(movie) {
+    updateSessionsView(movie.session);
+    setSessionVisibility(true);
     let seats = document.getElementsByClassName('seat');
     Array.from(seats).forEach((el, i) => {
         el.style.backgroundColor = movie.seats[i] ? 'aquamarine' : 'black'; 
     })
+}
+
+function updateSessionsView(chosenSession) {
+    let sessions = document.getElementsByClassName('session');
+    for (const session of sessions) {
+        let time = session.getElementsByTagName('h4')[0];
+        session.style.backgroundColor = time.textContent == chosenSession ? 'dodgerblue' : '';
+    }
+}
+
+function setSessionVisibility(isVisisible) {
+    let curSession = document.querySelector(".current-session");
+    curSession.style.display = isVisisible ? 'block' : 'none';
 }
