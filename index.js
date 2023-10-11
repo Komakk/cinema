@@ -12,15 +12,15 @@ for (const day of days) {
         updateSessions(dayOfMounth);
     });
 }
-//updateSessions('10.10');
+updateSessions('10.10');
 
 function updateSessions(day) {
     let movies = data[day];
     let sessions = document.getElementsByClassName('session');
     Array.from(sessions).forEach((el, i) => {
         let movie = movies[i];
-        let movieName = document.createTextNode(movie.name);
-        el.appendChild(movieName);
+        let movieName = el.getElementsByTagName('p')[0];
+        movieName.textContent = movie.name;
         el.addEventListener('click', () => {
             updateCurrentSession(movie);
         });
@@ -28,5 +28,8 @@ function updateSessions(day) {
 }
 
 function updateCurrentSession(movie) {
-
+    let seats = document.getElementsByClassName('seat');
+    Array.from(seats).forEach((el, i) => {
+        el.style.backgroundColor = movie.seats[i] ? 'aquamarine' : 'black'; 
+    })
 }
