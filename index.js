@@ -1,20 +1,19 @@
 import { data } from "./data.js";
 
-let days = document.getElementsByClassName('day');
-let today = Date.now();
-for (const day of days) {
-    let date = new Date(today);
-    let dayOfMounth = date.getDate() + '.' + (date.getMonth() + 1);
-    day.textContent = dayOfMounth;
-    today += 86400000;
+let daysElements = document.getElementsByClassName('day');
+let days = Object.keys(data);
 
-    day.addEventListener('click', () => {
-        updateSessions(dayOfMounth);
+Array.from(daysElements).forEach((el, i) => {
+    el.textContent = days[i];
+    el.addEventListener('click', () => {
+        chooseDay(days[i]);
     });
-}
-updateSessions('10.10');
+});
 
-function updateSessions(day) {
+chooseDay('10.10');
+
+function chooseDay(day) {
+    updateDaysView(day);
     let movies = data[day];
     let sessions = document.getElementsByClassName('session');
     Array.from(sessions).forEach((el, i) => {
@@ -25,6 +24,12 @@ function updateSessions(day) {
             updateCurrentSession(movie);
         });
     });
+}
+
+function updateDaysView(chosenDay) {
+    for (const day of daysElements) {
+        day.style.backgroundColor = day.textContent == chosenDay ? 'dodgerblue' : '';
+    }
 }
 
 function updateCurrentSession(movie) {
