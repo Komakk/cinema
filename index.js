@@ -37,6 +37,10 @@ function updateDaysView(chosenDay) {
 function chooseSession(movie) {
     updateSessionsView(movie.session);
     setSessionVisibility(true);
+    let curSession = document.querySelector(".current-session");
+    let [ movieName, date ] = curSession.getElementsByTagName('h2');
+    movieName.textContent = movie.name;
+    date.textContent = movie.session;
     let seats = document.getElementsByClassName('seat');
     Array.from(seats).forEach((el, i) => {
         el.style.backgroundColor = movie.seats[i] ? 'aquamarine' : 'black'; 

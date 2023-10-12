@@ -21,6 +21,7 @@ h1, h2, p {
     height: 20px;
     border: solid 2px black;
     text-align: center;
+    cursor: pointer;
 }
 
 .day-sessions {
@@ -38,6 +39,7 @@ h1, h2, p {
     border: solid 2px black;
     text-align: center;
     font-size: 1.2rem;
+    cursor: pointer;
 }
 
 .current-session {
