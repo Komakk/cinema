@@ -1,21 +1,31 @@
 import { data } from "./data.js";
 
-let daysElements = document.getElementsByClassName('day');
-let days = Object.keys(data);
+let date = Date.now();
+let dayElements = document.getElementsByClassName('day');
+let datePicker = document.querySelector('.datepicker-input');
 
-Array.from(daysElements).forEach((el, i) => {
-    el.textContent = days[i];
-    el.addEventListener('click', () => {
-        chooseDay(days[i]);
-    });
-});
+for (const dayEl of dayElements) {
+    const elDate = new Date(date);
+    const formattedElDate = elDate.toJSON().split('T')[0];
+    date += 86400000;
+    dayEl.dataset.date = formattedElDate;
+    dayEl.addEventListener('click', () => {
+        updateDaysView(formattedElDate);
+        setDatePickerValue(formattedElDate);
+        updateSessionsView("");
+        setSessionVisibility(false);
+        chooseDay(formattedElDate);
+    })
+    if (dayEl.id.includes('aft')) dayEl.textContent = elDate.toDateString().slice(0, 10);
+}
 
-chooseDay('10.10');
+//chooseDay('10.10');
+
+function setDatePickerValue(chosenDay) {
+    datePicker.value = chosenDay;
+}
 
 function chooseDay(day) {
-    updateDaysView(day);
-    updateSessionsView("");
-    setSessionVisibility(false);
     let movies = data[day];
     let sessions = document.getElementsByClassName('session');
     Array.from(sessions).forEach((el, i) => {
@@ -29,8 +39,8 @@ function chooseDay(day) {
 }
 
 function updateDaysView(chosenDay) {
-    for (const day of daysElements) {
-        day.style.backgroundColor = day.textContent == chosenDay ? 'dodgerblue' : '';
+    for (const day of dayElements) {
+        day.style.backgroundColor = day.dataset.date == chosenDay ? 'dodgerblue' : '';
     }
 }
 
