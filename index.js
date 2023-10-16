@@ -19,7 +19,17 @@ for (const dayEl of dayElements) {
     if (dayEl.id.includes('aft')) dayEl.textContent = elDate.toDateString().slice(0, 10);
 }
 
-//chooseDay('10.10');
+datePicker.addEventListener('change', (e) => {
+    let pickedDay = e.target.value;
+    updateDaysView(pickedDay);
+    updateSessionsView("");
+    setSessionVisibility(false);
+    chooseDay(pickedDay);
+})
+
+let todayDate = new Date().toJSON().split('T')[0];
+chooseDay(todayDate);
+updateDaysView(todayDate);
 
 function setDatePickerValue(chosenDay) {
     datePicker.value = chosenDay;
