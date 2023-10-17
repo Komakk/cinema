@@ -59,7 +59,7 @@ function chooseSession(movie) {
     date.textContent = movie.session;
     let seats = document.getElementsByClassName('seat');
     Array.from(seats).forEach((el, i) => {
-        el.style.backgroundColor = movie.seats[i] ? 'aquamarine' : 'black'; 
+        el.style.backgroundColor = movie.seats[i] ? 'grey' : 'mediumseagreen'; 
     })
 }
 
