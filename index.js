@@ -18,7 +18,7 @@ for (const dayEl of dayElements) {
         setSessionVisibility(false);
         chooseDay(formattedElDate);
     })
-    if (dayEl.id.includes('aft')) dayEl.textContent = new Date(date).toDateString().slice(0, 10);
+    if (dayEl.id.includes('aft')) dayEl.textContent = new Date(formattedElDate).toDateString().slice(0, 10);
 }
 
 datePicker.addEventListener('change', (e) => {
@@ -29,7 +29,7 @@ datePicker.addEventListener('change', (e) => {
     chooseDay(pickedDay);
 })
 
-let todayDate = new Date().toJSON().split('T')[0];
+let todayDate = formatDate(Date.now());
 chooseDay(todayDate);
 updateDaysView(todayDate);
 
