@@ -4,9 +4,11 @@ let date = Date.now();
 let dayElements = document.getElementsByClassName('day');
 let datePicker = document.querySelector('.datepicker-input');
 
+datePicker.setAttribute("min", formatDate(date - (86400000 * 7)));
+datePicker.setAttribute("max", formatDate(date + (86400000 * 7)));
+
 for (const dayEl of dayElements) {
-    const elDate = new Date(date);
-    const formattedElDate = elDate.toJSON().split('T')[0];
+    const formattedElDate = formatDate(date);
     date += 86400000;
     dayEl.dataset.date = formattedElDate;
     dayEl.addEventListener('click', () => {
@@ -16,13 +18,17 @@ for (const dayEl of dayElements) {
         setSessionVisibility(false);
         chooseDay(formattedElDate);
     })
-    if (dayEl.id.includes('aft')) dayEl.textContent = elDate.toDateString().slice(0, 10);
+    if (dayEl.id.includes('aft')) dayEl.textContent = new Date(date).toDateString().slice(0, 10);
 }
 
 //chooseDay('10.10');
 
 function setDatePickerValue(chosenDay) {
     datePicker.value = chosenDay;
+}
+
+function formatDate(timestamp) {
+    return new Date(timestamp).toJSON().split('T')[0];
 }
 
 function chooseDay(day) {
