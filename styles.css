@@ -18,31 +18,37 @@ h1, h2, p {
 
 .day {
     width: 100px;
-    height: 20px;
+    height: 25px;
     border: solid 2px black;
-    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     cursor: pointer;
 }
 
 .datepicker-toggle {
-    display: inline-block;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     position: relative;
     width: 100px;
-    height: 20px;
+    height: 25px;
     border: solid 2px black;
+    overflow: hidden;
   }
   
   .datepicker-toggle-button {
     position: absolute;
-    left: 0;
-    top: 0;
-    height: 100%;
+    left: 10px;
+    top: 2px;
+    height: 16px;
     color: white;
   }
 
   .datepicker-text {
-    position: absolute;
-    left: 19px;
+    position: relative;
+    left: 26px;
+    
   }
   
   .datepicker-input {
