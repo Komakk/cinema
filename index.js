@@ -69,8 +69,15 @@ function chooseSession(movie) {
     date.textContent = movie.session;
     let seats = document.getElementsByClassName('seat');
     Array.from(seats).forEach((el, i) => {
-        el.style.backgroundColor = movie.seats[i] ? 'grey' : 'mediumseagreen'; 
-    })
+        if (movie.seats[i]) {
+            el.classList.add('occupaied-seat');
+        } else {
+            el.classList.add('free-seat');
+            el.addEventListener('click', (e) => {
+                e.target.classList.toggle('picked-seat');
+            });
+        }
+    });
 }
 
 function updateSessionsView(chosenSession) {

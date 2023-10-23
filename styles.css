@@ -141,4 +141,19 @@ input[type="radio"]:checked+label {
     width: 50px;
     height: 50px;
     border: solid 2px black;
+    
+}
+
+.free-seat {
+  background-color: mediumseagreen;
+  cursor: pointer;
+}
+
+.occupaied-seat {
+  background-color: grey;
+  cursor: not-allowed;
+}
+
+.picked-seat {
+  background-color: red;
 }
