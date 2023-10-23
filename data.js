@@ -1,5 +1,5 @@
 export const data = {
-    '2023-10-15': [
+    '2023-10-23': [
         {'name': 'Valkiria', 'session': '10:00', 'seats': [0,0,0,0,1,1,1,0,0,0]},
         {'name': 'Love', 'session': '12:00', 'seats': [0,1,0,1,1,1,1,0,0,0]},
         {'name': 'Shame', 'session': '14:00', 'seats': [0,1,0,1,1,1,1,1,0,0]},
@@ -7,7 +7,7 @@ export const data = {
         {'name': 'Shrek', 'session': '18:00', 'seats': [0,1,0,1,1,1,1,1,0,0]},
         {'name': 'Iron Man', 'session': '20:00', 'seats': [0,1,1,1,1,1,1,1,1,0]}
     ],
-    '2023-10-16': [
+    '2023-10-24': [
         {'name': 'Valkiria', 'session': '10:00', 'seats': [0,0,0,0,1,1,1,0,0,0]},
         {'name': 'Love', 'session': '12:00', 'seats': [0,1,0,1,1,1,1,0,0,0]},
         {'name': 'Shame', 'session': '14:00', 'seats': [0,1,0,1,1,1,1,1,0,0]},
@@ -15,7 +15,7 @@ export const data = {
         {'name': 'Shrek', 'session': '18:00', 'seats': [0,1,0,1,1,1,1,1,0,0]},
         {'name': 'Iron Man', 'session': '20:00', 'seats': [0,1,1,1,1,1,1,1,1,0]}
     ],
-    '2023-10-17': [
+    '2023-10-25': [
         {'name': 'Valkiria', 'session': '10:00', 'seats': [0,0,0,0,1,1,1,0,0,0]},
         {'name': 'Love', 'session': '12:00', 'seats': [0,1,0,1,1,1,1,0,0,0]},
         {'name': 'Shame', 'session': '14:00', 'seats': [0,1,0,1,1,1,1,1,0,0]},
@@ -23,7 +23,7 @@ export const data = {
         {'name': 'Shrek', 'session': '18:00', 'seats': [0,1,0,1,1,1,1,1,0,0]},
         {'name': 'Iron Man', 'session': '20:00', 'seats': [0,1,1,1,1,1,1,1,1,0]}
     ],
-    '2023-10-18': [
+    '2023-10-26': [
         {'name': 'Valkiria', 'session': '10:00', 'seats': [0,0,0,0,1,1,1,0,0,0]},
         {'name': 'Love', 'session': '12:00', 'seats': [0,1,0,1,1,1,1,0,0,0]},
         {'name': 'Shame', 'session': '14:00', 'seats': [0,1,0,1,1,1,1,1,0,0]},
@@ -31,7 +31,7 @@ export const data = {
         {'name': 'Shrek', 'session': '18:00', 'seats': [0,1,0,1,1,1,1,1,0,0]},
         {'name': 'Iron Man', 'session': '20:00', 'seats': [0,1,1,1,1,1,1,1,1,0]}
     ],
-    '2023-10-19': [
+    '2023-10-27': [
         {'name': 'Valkiria', 'session': '10:00', 'seats': [0,0,0,0,1,1,1,0,0,0]},
         {'name': 'Love', 'session': '12:00', 'seats': [0,1,0,1,1,1,1,0,0,0]},
         {'name': 'Shame', 'session': '14:00', 'seats': [0,1,0,1,1,1,1,1,0,0]},
@@ -39,7 +39,7 @@ export const data = {
         {'name': 'Shrek', 'session': '18:00', 'seats': [0,1,0,1,1,1,1,1,0,0]},
         {'name': 'Iron Man', 'session': '20:00', 'seats': [0,1,1,1,1,1,1,1,1,0]}
     ],
-    '2023-10-20': [
+    '2023-10-28': [
         {'name': 'Valkiria', 'session': '10:00', 'seats': [0,0,0,0,1,1,1,0,0,0]},
         {'name': 'Love', 'session': '12:00', 'seats': [0,1,0,1,1,1,1,0,0,0]},
         {'name': 'Shame', 'session': '14:00', 'seats': [0,1,0,1,1,1,1,1,0,0]},
@@ -47,7 +47,7 @@ export const data = {
         {'name': 'Shrek', 'session': '18:00', 'seats': [0,1,0,1,1,1,1,1,0,0]},
         {'name': 'Iron Man', 'session': '20:00', 'seats': [0,1,1,1,1,1,1,1,1,0]}
     ],
-    '2023-10-21': [
+    '2023-10-29': [
         {'name': 'Valkiria', 'session': '10:00', 'seats': [0,0,0,0,1,1,1,0,0,0]},
         {'name': 'Love', 'session': '12:00', 'seats': [0,1,0,1,1,1,1,0,0,0]},
         {'name': 'Shame', 'session': '14:00', 'seats': [0,1,0,1,1,1,1,1,0,0]},

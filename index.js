@@ -1,7 +1,7 @@
 import { data } from "./data.js";
 
 let date = Date.now();
-let dayElements = document.getElementsByClassName('day');
+let dayElements = document.getElementsByName('days');
 let datePicker = document.querySelector('.datepicker-input');
 
 datePicker.setAttribute("min", formatDate(date - (86400000 * 7)));
@@ -10,7 +10,7 @@ datePicker.setAttribute("max", formatDate(date + (86400000 * 7)));
 for (const dayEl of dayElements) {
     const formattedElDate = formatDate(date);
     date += 86400000;
-    dayEl.dataset.date = formattedElDate;
+    dayEl.value = formattedElDate;
     dayEl.addEventListener('click', () => {
         updateDaysView(formattedElDate);
         setDatePickerValue(formattedElDate);
