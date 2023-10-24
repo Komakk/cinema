@@ -4,6 +4,8 @@ let date = Date.now();
 let dayElements = document.getElementsByName('days');
 let datePicker = document.querySelector('.datepicker-input');
 
+let seatElements = document.getElementsByClassName('seat');
+
 datePicker.setAttribute("min", formatDate(date - (86400000 * 7)));
 datePicker.setAttribute("max", formatDate(date + (86400000 * 7)));
 
@@ -48,9 +50,9 @@ function chooseDay(day) {
         let movie = movies[i];
         let movieName = el.getElementsByTagName('p')[0];
         movieName.textContent = movie.name;
-        el.addEventListener('click', () => {
+        el.onclick = () => {
             chooseSession(movie);
-        });
+        };
     });
 }
 
@@ -61,21 +63,21 @@ function updateDaysView(chosenDay) {
 }
 
 function chooseSession(movie) {
+    console.log(movie);
     updateSessionsView(movie.session);
     setSessionVisibility(true);
     let curSession = document.querySelector(".current-session");
     let [ movieName, date ] = curSession.getElementsByTagName('h2');
     movieName.textContent = movie.name;
     date.textContent = movie.session;
-    let seats = document.getElementsByClassName('seat');
-    Array.from(seats).forEach((el, i) => {
-        if (movie.seats[i]) {
-            el.classList.add('occupaied-seat');
-        } else {
-            el.classList.add('free-seat');
-            el.addEventListener('click', (e) => {
-                e.target.classList.toggle('picked-seat');
-            });
+    updateSeatsView(movie.seats);
+
+    Array.from(seatElements).forEach((el, i) => {
+        if (movie.seats[i] != 1) {
+            el.onclick = () => {
+                movie.seats[i] =  movie.seats[i] != 2 ? 2 : 0;
+                updateSeatsView(movie.seats);
+            };
         }
     });
 }
@@ -88,7 +90,25 @@ function updateSessionsView(chosenSession) {
     }
 }
 
-function setSessionVisibility(isVisisible) {
+function setSessionVisibility(isVisible) {
     let curSession = document.querySelector(".current-session");
-    curSession.style.display = isVisisible ? 'block' : 'none';
+    curSession.style.display = isVisible ? 'block' : 'none';
+}
+
+function updateSeatsView(movieSeats) {
+    Array.from(seatElements).forEach((el, i) => {
+        el.classList.remove('occupaied-seat', 'picked-seat');
+        switch (movieSeats[i]) {
+            case 1:
+                el.classList.add('occupaied-seat');
+                break;
+            case 2:
+                el.classList.add('picked-seat');
+                break;
+        }
+    });
+}
+
+function seatClickHandler(e) {
+
 }
