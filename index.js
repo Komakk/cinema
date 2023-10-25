@@ -1,4 +1,4 @@
-import { data } from "./data.js";
+//import { data } from "./data.js";
 
 let date = Date.now();
 let dayElements = document.getElementsByName('days');
@@ -8,6 +8,21 @@ let seatElements = document.getElementsByClassName('seat');
 
 datePicker.setAttribute("min", formatDate(date - (86400000 * 7)));
 datePicker.setAttribute("max", formatDate(date + (86400000 * 7)));
+
+let data;
+let localStorageData = localStorage.getItem('data');
+if (localStorageData !== null) {
+    data = JSON.parse(localStorageData);
+} else {
+    fetch('./data.json')
+        .then(res => res.json())
+        .then(json => {
+            data = json;
+            let todayDate = formatDate(Date.now());
+            chooseDay(todayDate);
+            updateDaysView(todayDate);
+        });
+}
 
 for (const dayEl of dayElements) {
     const formattedElDate = formatDate(date);
@@ -30,10 +45,6 @@ datePicker.addEventListener('change', (e) => {
     setSessionVisibility(false);
     chooseDay(pickedDay);
 })
-
-let todayDate = formatDate(Date.now());
-chooseDay(todayDate);
-updateDaysView(todayDate);
 
 function setDatePickerValue(chosenDay) {
     datePicker.value = chosenDay;
@@ -77,6 +88,7 @@ function chooseSession(movie) {
             el.onclick = () => {
                 movie.seats[i] =  movie.seats[i] != 2 ? 2 : 0;
                 updateSeatsView(movie.seats);
+                localStorage.setItem('data', JSON.stringify(data));
             };
         }
     });
