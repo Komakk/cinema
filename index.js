@@ -7,14 +7,13 @@ let data;
 let localStorageData = localStorage.getItem('data');
 if (localStorageData !== null) {
     data = JSON.parse(localStorageData);
+    loadTodayData();
 } else {
     fetch('./data.json')
         .then(res => res.json())
         .then(json => {
             data = json;
-            let currentDate = '2023-10-24';
-            chooseDay(currentDate);
-            updateDaysView(currentDate);
+            loadTodayData();
         });
 }
 
@@ -42,8 +41,10 @@ function setDatePickerValue(chosenDay) {
     datePicker.value = chosenDay;
 }
 
-function formatDate(timestamp) {
-    return new Date(timestamp).toJSON().split('T')[0];
+function loadTodayData() {
+    let currentDate = '2023-10-24';
+    chooseDay(currentDate);
+    updateDaysView(currentDate);
 }
 
 function chooseDay(day) {
