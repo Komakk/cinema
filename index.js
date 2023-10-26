@@ -1,13 +1,7 @@
-//import { data } from "./data.js";
 
-let date = Date.now();
 let dayElements = document.getElementsByName('days');
 let datePicker = document.querySelector('.datepicker-input');
-
 let seatElements = document.getElementsByClassName('seat');
-
-datePicker.setAttribute("min", formatDate(date - (86400000 * 7)));
-datePicker.setAttribute("max", formatDate(date + (86400000 * 7)));
 
 let data;
 let localStorageData = localStorage.getItem('data');
@@ -18,24 +12,22 @@ if (localStorageData !== null) {
         .then(res => res.json())
         .then(json => {
             data = json;
-            let todayDate = formatDate(Date.now());
-            chooseDay(todayDate);
-            updateDaysView(todayDate);
+            let currentDate = '2023-10-24';
+            chooseDay(currentDate);
+            updateDaysView(currentDate);
         });
 }
 
 for (const dayEl of dayElements) {
-    const formattedElDate = formatDate(date);
-    date += 86400000;
-    dayEl.value = formattedElDate;
-    dayEl.addEventListener('click', () => {
-        updateDaysView(formattedElDate);
-        setDatePickerValue(formattedElDate);
+
+    dayEl.addEventListener('click', (e) => {
+        let elDate = e.target.value;
+        updateDaysView(elDate);
+        setDatePickerValue(elDate);
         updateSessionsView("");
         setSessionVisibility(false);
-        chooseDay(formattedElDate);
+        chooseDay(elDate);
     })
-    if (dayEl.id.includes('aft')) dayEl.textContent = new Date(formattedElDate).toDateString().slice(0, 10);
 }
 
 datePicker.addEventListener('change', (e) => {
@@ -119,8 +111,4 @@ function updateSeatsView(movieSeats) {
                 break;
         }
     });
-}
-
-function seatClickHandler(e) {
-
 }
