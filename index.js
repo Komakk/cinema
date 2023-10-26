@@ -2,6 +2,7 @@
 let dayElements = document.getElementsByName('days');
 let datePicker = document.querySelector('.datepicker-input');
 let seatElements = document.getElementsByClassName('seat');
+let reservedSeat = document.getElementById('reserved-seat');
 
 let data;
 let localStorageData = localStorage.getItem('data');
@@ -75,12 +76,14 @@ function chooseSession(movie) {
     movieName.textContent = movie.name;
     date.textContent = movie.session;
     updateSeatsView(movie.seats);
+    countReservedSeats();
 
     Array.from(seatElements).forEach((el, i) => {
         if (movie.seats[i] != 1) {
             el.onclick = () => {
                 movie.seats[i] =  movie.seats[i] != 2 ? 2 : 0;
                 updateSeatsView(movie.seats);
+                countReservedSeats();
                 localStorage.setItem('data', JSON.stringify(data));
             };
         }
@@ -112,4 +115,12 @@ function updateSeatsView(movieSeats) {
                 break;
         }
     });
+}
+
+function countReservedSeats() {
+    let reservedSeats = [];
+    Array.from(seatElements).forEach((el, i) => {
+        if (el.classList.contains('picked-seat')) reservedSeats.push(i + 1);
+    });
+    reservedSeat.textContent = reservedSeats.toString();
 }
