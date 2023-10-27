@@ -1,6 +1,7 @@
 
 let dayElements = document.getElementsByName('days');
 let datePicker = document.querySelector('.datepicker-input');
+let sessionsContainer = document.querySelector('.day-sessions');
 let seatElements = document.getElementsByClassName('seat');
 let reservedSeat = document.getElementById('reserved-seat');
 
@@ -22,9 +23,9 @@ for (const dayEl of dayElements) {
 
     dayEl.addEventListener('click', (e) => {
         let elDate = e.target.value;
-        updateDaysView(elDate);
+        //updateDaysView(elDate);
         setDatePickerValue(elDate);
-        updateSessionsView("");
+        //updateSessionsView("");
         setSessionVisibility(false);
         chooseDay(elDate);
     })
@@ -32,8 +33,8 @@ for (const dayEl of dayElements) {
 
 datePicker.addEventListener('change', (e) => {
     let pickedDay = e.target.value;
-    updateDaysView(pickedDay);
-    updateSessionsView("");
+    //updateDaysView(pickedDay);
+    //updateSessionsView("");
     setSessionVisibility(false);
     chooseDay(pickedDay);
 })
@@ -45,19 +46,33 @@ function setDatePickerValue(chosenDay) {
 function loadTodayData() {
     let currentDate = '2023-10-24';
     chooseDay(currentDate);
-    updateDaysView(currentDate);
+    //updateDaysView(currentDate);
 }
 
 function chooseDay(day) {
     let movies = data[day];
     let sessions = document.getElementsByClassName('session');
-    Array.from(sessions).forEach((el, i) => {
-        let movie = movies[i];
-        let movieName = el.getElementsByTagName('p')[0];
-        movieName.textContent = movie.name;
-        el.onclick = () => {
-            chooseSession(movie);
-        };
+    populateSessions(movies);
+    // Array.from(sessions).forEach((el, i) => {
+    //     let movie = movies[i];
+    //     let movieName = el.getElementsByTagName('p')[0];
+    //     movieName.textContent = movie.name;
+    //     el.onclick = () => {
+    //         chooseSession(movie);
+    //     };
+    // });
+}
+
+function populateSessions(movies) {
+    sessionsContainer.textContent = '';
+    movies.forEach((ses, i) => {
+        let sessionHTML = `
+        <input type="radio" id="${i}" name="sessions" value="${ses.session}" onchange="() => console.log('change')">
+        <label class="session" for="${i}">
+            <span>${ses.session}</span>
+            <span>${ses.name}</span>
+        </label>`;
+        sessionsContainer.insertAdjacentHTML('beforeend', sessionHTML);
     });
 }
 
