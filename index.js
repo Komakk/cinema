@@ -23,20 +23,16 @@ for (const dayEl of dayElements) {
 
     dayEl.addEventListener('click', (e) => {
         let elDate = e.target.value;
-        //updateDaysView(elDate);
         setDatePickerValue(elDate);
-        //updateSessionsView("");
         setSessionVisibility(false);
-        chooseDay(elDate);
+        populateSessions(data[elDate]);
     })
 }
 
 datePicker.addEventListener('change', (e) => {
     let pickedDay = e.target.value;
-    //updateDaysView(pickedDay);
-    //updateSessionsView("");
     setSessionVisibility(false);
-    chooseDay(pickedDay);
+    populateSessions(data[pickedDay]);
 })
 
 function setDatePickerValue(chosenDay) {
@@ -45,29 +41,20 @@ function setDatePickerValue(chosenDay) {
 
 function loadTodayData() {
     let currentDate = '2023-10-24';
-    chooseDay(currentDate);
-    //updateDaysView(currentDate);
-}
-
-function chooseDay(day) {
-    let movies = data[day];
-    let sessions = document.getElementsByClassName('session');
-    populateSessions(movies);
-    // Array.from(sessions).forEach((el, i) => {
-    //     let movie = movies[i];
-    //     let movieName = el.getElementsByTagName('p')[0];
-    //     movieName.textContent = movie.name;
-    //     el.onclick = () => {
-    //         chooseSession(movie);
-    //     };
-    // });
+    populateSessions(data[currentDate]);
 }
 
 function populateSessions(movies) {
     sessionsContainer.textContent = '';
     movies.forEach((ses, i) => {
+        let input = document.createElement('input');
+        input.type = 'radio';
+        input.id = i;
+        input.name = 'sessions';
+        input.onchange = () => chooseSession(ses);
+        sessionsContainer.appendChild(input);
+
         let sessionHTML = `
-        <input type="radio" id="${i}" name="sessions" value="${ses.session}" onchange="() => console.log('change')">
         <label class="session" for="${i}">
             <span>${ses.session}</span>
             <span>${ses.name}</span>
@@ -83,8 +70,6 @@ function updateDaysView(chosenDay) {
 }
 
 function chooseSession(movie) {
-    console.log(movie);
-    updateSessionsView(movie.session);
     setSessionVisibility(true);
     let curSession = document.querySelector(".current-session");
     let [ movieName, date ] = curSession.getElementsByTagName('h2');
@@ -103,14 +88,6 @@ function chooseSession(movie) {
             };
         }
     });
-}
-
-function updateSessionsView(chosenSession) {
-    let sessions = document.getElementsByClassName('session');
-    for (const session of sessions) {
-        let time = session.getElementsByTagName('h4')[0];
-        session.style.backgroundColor = time.textContent == chosenSession ? 'dodgerblue' : '';
-    }
 }
 
 function setSessionVisibility(isVisible) {
