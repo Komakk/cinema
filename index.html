@@ -26,15 +26,17 @@
         <div class="datepicker-toggle">
             <img class="datepicker-toggle-button" src="https://xn--c1adbibb0aykc7n.xn--p1ai/ig2xx/images/calendar_icon_brown.svg">
             <span class="datepicker-text">Choose date</span>
-            <input type="date" class="datepicker-input" value="2023-10-24" min="2023-10-17 " max="2023-10-31">
+            <input type="date" class="datepicker-input" value="2023-10-24" min="2023-10-17" max="2023-10-31">
         </div>          
     </div>
     <h2>Sessions:</h2>
     <div class="day-sessions"></div>
 
     <div class="current-session">
-        <h3>Movie name: </h3>
-        <h3>Date</h3>
+        <div class="session-info-container">
+            <p>Name: <span class="session-info"></span></p>
+            <p>Date: <span class="session-info"></span></p>
+        </div>
         <p>Seats: </p>
         <div class="legend">
             <div class="legend-item">
@@ -59,6 +61,7 @@
             <div class="seat"></div>
         </div>
         <p>Your reserved seat: <span id="reserved-seat"></span></p>
+        <button class="btn-buy">Select seats</button>
     </div>
 </body>
 <!-- <script type="module" src="./data.js"></script> -->

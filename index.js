@@ -3,6 +3,7 @@ let datePicker = document.querySelector('.datepicker-input');
 let sessionsContainer = document.querySelector('.day-sessions');
 let seatElements = document.getElementsByClassName('seat');
 let reservedSeat = document.getElementById('reserved-seat');
+let buyButton = document.querySelector('.btn-buy');
  
 let data;
 let localStorageData = localStorage.getItem('data');
@@ -71,8 +72,8 @@ function updateDaysView(chosenDay) {
 function chooseSession(movie) {
     setSessionVisibility(true);
     let curSession = document.querySelector(".current-session");
-    let [ movieName, date ] = curSession.getElementsByTagName('h3');
-    movieName.textContent += movie.name;
+    let [ movieName, date ] = curSession.querySelectorAll('.session-info');
+    movieName.textContent = movie.name;
     let dateString = new Date(movie.date).toDateString().slice(0, 10);
     date.textContent = dateString + ' ' + movie.session;
     updateSeatsView(movie.seats);
@@ -86,6 +87,8 @@ function chooseSession(movie) {
                 countReservedSeats();
                 localStorage.setItem('data', JSON.stringify(data));
             };
+        } else {
+            el.onclick = null;
         }
     });
 }
@@ -115,4 +118,11 @@ function countReservedSeats() {
         if (el.classList.contains('picked-seat')) reservedSeats.push(i + 1);
     });
     reservedSeat.textContent = reservedSeats.toString();
+    if (reservedSeats.length > 0) {
+        buyButton.textContent = 'Buy';
+        buyButton.disabled = false;
+    } else {
+        buyButton.textContent = 'Select seats';
+        buyButton.disabled = true;
+    }
 }
