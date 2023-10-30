@@ -7,6 +7,9 @@
     <title>Document</title>
 </head>
 <body>
+    <header>
+        <h1>cinema schedule</h1>
+    </header>
     <div class="days-container">
 		<input type="radio" id="today" name="days" value="2023-10-24" checked>
 		<label for="today">Today</label>
@@ -20,18 +23,18 @@
 		<input type="radio" id="aft-aft-tom" name="days" value="2023-10-27">
 		<label for="aft-aft-tom">Fri Oct 27</label>
 		
-        <span class="datepicker-toggle">
+        <div class="datepicker-toggle">
             <img class="datepicker-toggle-button" src="https://xn--c1adbibb0aykc7n.xn--p1ai/ig2xx/images/calendar_icon_brown.svg">
             <span class="datepicker-text">Choose date</span>
             <input type="date" class="datepicker-input" value="2023-10-24" min="2023-10-17 " max="2023-10-31">
-          </span>          
+        </div>          
     </div>
     <h2>Sessions:</h2>
     <div class="day-sessions"></div>
 
     <div class="current-session">
-        <h2>Movie Name</h2>
-        <h2>Date</h2>
+        <h3>Movie name: </h3>
+        <h3>Date</h3>
         <p>Seats: </p>
         <div class="legend">
             <div class="legend-item">
