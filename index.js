@@ -63,12 +63,6 @@ function populateSessions(movies) {
     });
 }
 
-function updateDaysView(chosenDay) {
-    for (const day of dayElements) {
-        day.style.backgroundColor = day.dataset.date == chosenDay ? 'dodgerblue' : '';
-    }
-}
-
 function chooseSession(movie) {
     setSessionVisibility(true);
     let curSession = document.querySelector(".current-session");
@@ -124,5 +118,21 @@ function countReservedSeats() {
     } else {
         buyButton.textContent = 'Select seats';
         buyButton.disabled = true;
+    }
+}
+
+function isSessionActive(session) {
+    let currentDate = new Date();
+    currentDate.setFullYear(2023);
+    currentDate.setMonth(9);
+    currentDate.setDate(24);
+
+    let sessionDate = new Date(session.date);
+    sessionDate.setHours(session.session.split(':')[0]);
+
+    if (sessionDate.getTime() > currentDate.getTime()) {
+        return true;
+    } else {
+        return false;
     }
 }

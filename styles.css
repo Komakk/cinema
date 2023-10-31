@@ -50,6 +50,10 @@ label {
   cursor: pointer;
 }
 
+label:hover {
+  background-color: #bbb;
+}
+
 input[type="radio"]:checked+label {
   background-color: #bbb;
 }
@@ -139,10 +143,12 @@ input[type="radio"]:checked+label {
 .legend {
   display: flex;
   justify-content: center;
-  list-style: square;
 }
 
 .legend-item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   margin: 0 25px;
   vertical-align: middle;
 }
@@ -179,6 +185,38 @@ input[type="radio"]:checked+label {
     cursor: pointer;
 }
 
+.occupaied-seat {
+  background-color: grey;
+  cursor: not-allowed;
+}
+
+.picked-seat {
+  background-color: red;
+}
+
+.seat-count {
+  font-size: 18px;
+}
+
+.btn-buy {
+  display: block;
+  margin: 0 auto;
+  color: white;
+  background-color: red;
+  font-size: 20px;
+  width: 200px;
+  height: 50px;
+  border: none;
+  border-radius: 0;
+  cursor: pointer;
+  margin-bottom: 20px;
+}
+
+.btn-buy:disabled {
+  background-color: #c4c4c4;
+  cursor: default;
+}
+
 @media screen and (max-width: 630px) {
   .seats {
     gap: 5px;
@@ -192,37 +230,19 @@ input[type="radio"]:checked+label {
 
 @media screen and (max-width: 480px) {
 
+  .legend-seat {
+    width: 15px;
+    height: 15px;
+  }
+
+  .seats {
+    height: 56px;
+    margin-top: 16px;
+  }
+
 
   .seat {
     width: 30px;
     height: 30px;
   }
-}
-
-.occupaied-seat {
-  background-color: grey;
-  cursor: not-allowed;
-}
-
-.picked-seat {
-  background-color: red;
-}
-
-.btn-buy {
-  display: block;
-  margin: 0 auto;
-  color: white;
-  background-color: red;
-  font-size: 16px;
-  width: 120px;
-  height: 30px;
-  border: none;
-  border-radius: 0;
-  cursor: pointer;
-  margin-bottom: 20px;
-}
-
-.btn-buy:disabled {
-  background-color: #c4c4c4;
-  cursor: default;
 }
